@@ -141,13 +141,14 @@ const ProductCard = ({ product }) => {
         <div className="card">
 
 
-            <div className="top-menu" onClick={(product_id) => navigate(`/dishdetail/${product?._id}`)}>
+            <div className="top-menu" >
 
                 <div className="glightbox"  >
                     <img
                         src={product?.img}
                         className="menu-img img-fluid"
                         alt=""
+                        onClick={(product_id) => navigate(`/dishdetail/${product?._id}`)}
                     />
                 </div>
 

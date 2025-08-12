@@ -66,7 +66,7 @@ const Home = () => {
               <img
                 src="assets/img/hero-img.png"
                 className="img-fluid animated"
-                alt=""
+                alt="/home"
               />
             </div>
           </div>

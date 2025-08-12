@@ -621,6 +621,7 @@ h6 {
   }
 
   .mobile-nav-active .navmenu {
+    display: block;
     position: fixed;
     overflow: hidden;
     inset: 0;

@@ -31,14 +31,14 @@
       mobileNavToggleBtn.addEventListener("click", mobileNavToogle);
     }
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const imgBtn = document.querySelector('.img__btn');
-  if (imgBtn) {
-    imgBtn.addEventListener('click', function () {
-      document.querySelector('.cont').classList.toggle('s--signup');
+    document.addEventListener("DOMContentLoaded", function () {
+      const imgBtn = document.querySelector('.img__btn');
+      if (imgBtn) {
+        imgBtn.addEventListener('click', function () {
+          document.querySelector('.cont').classList.toggle('s--signup');
+        });
+      }
     });
-  }
-});
 
     /**
      * Hide mobile nav on same-page/hash links
@@ -46,7 +46,7 @@
     document.querySelectorAll("#navmenu a").forEach((navmenu) => {
       navmenu.addEventListener("click", () => {
         if (document.querySelector(".mobile-nav-active")) {
-          mobileNavToogle();
+          mobileNavToggleBtn();
         }
       });
     });

@@ -1,7 +1,22 @@
 (function () {
   "use strict";
 
+  // ✅ Always define mobileNavToogle safely
+  function mobileNavToogle() {
+    const body = document.querySelector("body");
+    const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
+
+    if (body) {
+      body.classList.toggle("mobile-nav-active");
+    }
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle("bi-list");
+      mobileNavToggleBtn.classList.toggle("bi-x");
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+
     /**
      * Apply .scrolled class to the body as the page is scrolled down
      */
@@ -12,44 +27,36 @@
         !selectHeader.classList.contains("sticky-top") &&
         !selectHeader.classList.contains("fixed-top"))) return;
 
-      window.scrollY > 100 ? selectBody.classList.add("scrolled") : selectBody.classList.remove("scrolled");
+      window.scrollY > 100
+        ? selectBody.classList.add("scrolled")
+        : selectBody.classList.remove("scrolled");
     }
 
     document.addEventListener("scroll", toggleScrolled);
     window.addEventListener("load", toggleScrolled);
 
     /**
-     * Mobile nav toggle
+     * Mobile nav toggle button click
      */
     const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
     if (mobileNavToggleBtn) {
-      function mobileNavToogle() {
-        document.querySelector("body").classList.toggle("mobile-nav-active");
-        mobileNavToggleBtn.classList.toggle("bi-list");
-        mobileNavToggleBtn.classList.toggle("bi-x");
-      }
+      // ✅ Runs only when DOM is ready, so works after deployment
       mobileNavToggleBtn.addEventListener("click", mobileNavToogle);
     }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const imgBtn = document.querySelector('.img__btn');
-      if (imgBtn) {
-        imgBtn.addEventListener('click', function () {
-          document.querySelector('.cont').classList.toggle('s--signup');
-        });
-      }
-    });
 
     /**
      * Hide mobile nav on same-page/hash links
      */
-    document.querySelectorAll("#navmenu a").forEach((navmenu) => {
-      navmenu.addEventListener("click", () => {
-        if (document.querySelector(".mobile-nav-active")) {
-          mobileNavToggleBtn();
-        }
+    const navLinks = document.querySelectorAll("#navmenu a");
+    if (navLinks.length) {
+      navLinks.forEach((navmenu) => {
+        navmenu.addEventListener("click", () => {
+          if (document.querySelector(".mobile-nav-active")) {
+            mobileNavToogle();
+          }
+        });
       });
-    });
+    }
 
     /**
      * Scroll top button
@@ -57,7 +64,9 @@
     let scrollTop = document.querySelector(".scroll-top");
     if (scrollTop) {
       function toggleScrollTop() {
-        window.scrollY > 100 ? scrollTop.classList.add("active") : scrollTop.classList.remove("active");
+        window.scrollY > 100
+          ? scrollTop.classList.add("active")
+          : scrollTop.classList.remove("active");
       }
       scrollTop.addEventListener("click", (e) => {
         e.preventDefault();
@@ -67,6 +76,20 @@
       window.addEventListener("load", toggleScrollTop);
       document.addEventListener("scroll", toggleScrollTop);
     }
+
+    /**
+     * Sign in / Sign up form toggle
+     */
+    const imgBtn = document.querySelector('.img__btn');
+    if (imgBtn) {
+      imgBtn.addEventListener('click', function () {
+        const cont = document.querySelector('.cont');
+        if (cont) {
+          cont.classList.toggle('s--signup');
+        }
+      });
+    }
+
   });
 
 })();

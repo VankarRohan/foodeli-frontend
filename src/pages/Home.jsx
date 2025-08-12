@@ -25,7 +25,7 @@ const Home = () => {
 
     } catch (error) {
       console.log(error)
-     toast.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   }
 
@@ -54,7 +54,7 @@ const Home = () => {
                   Booka a Table
                 </Link>
                 <Link
-                  to="/home"  
+                  to="/home"
                   className="glightbox btn-watch-video d-flex align-items-center"
                 >
                   <i className="bi bi-play-circle" />
@@ -85,8 +85,11 @@ const Home = () => {
             </div>
 
             <div className="menu-cardwrapper">
-              {category.map((category) => (
-                <ProductCategoryCard category={category} />
+              {category.map((categoryItem) => (
+                <ProductCategoryCard
+                  key={categoryItem.id || categoryItem._id || categoryItem.name}
+                  category={categoryItem}
+                />
               ))}
             </div>
           </div>
@@ -121,7 +124,9 @@ const Home = () => {
               <div className="menu-cardwrapper">
                 {products.map((product) => {
                   return (
-                    <ProductCard product={product} />
+                    <ProductCard 
+                     key={product.id || product._id || product.name} 
+                    product={product} />
 
                   )
                 })}

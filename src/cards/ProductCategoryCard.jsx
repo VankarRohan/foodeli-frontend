@@ -21,7 +21,7 @@ const ProductCategoryCard = ({ category }) => {
                 </div>
 
 
-                <span class="badge text-bg-success sale-badge">{category.off}</span>
+                <span className="badge text-bg-success sale-badge">{category.off}</span>
 
 
             </div>
